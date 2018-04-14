@@ -10,11 +10,7 @@ services:
   mysql:
     build: ./docker/mysql
     restart: always
-    environment:
-      MYSQL_DATABASE: selfphp
-      MYSQL_USER: selfusr
-      MYSQL_PASSWORD: selfpass
-      MYSQL_ROOT_PASSWORD: pass
+    env_file: ./docker/mysql/.env
     volumes:
       - db:/var/lib/mysql
       - ./docker/mysql/initdb:/docker-entrypoint-initdb.d
