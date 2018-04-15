@@ -26,7 +26,7 @@ $ vim docker/mysql/.env
 # Startup
 
 ```
-$ docker-compose up -d app
+$ docker-compose up -d nginx
 ```
 
 # Installation of additional package
