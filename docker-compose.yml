@@ -5,11 +5,15 @@ services:
     restart: always
     ports:
       - '8080:80'
+    environment:
+      TZ: Asia/Tokyo
     volumes:
       - ./log/nginx:/var/log/nginx
   mysql:
     build: ./docker/mysql
     restart: always
+    environment:
+      TZ: Asia/Tokyo
     env_file: ./docker/mysql/.env
     volumes:
       - db:/var/lib/mysql
@@ -17,6 +21,8 @@ services:
   app:
     build: ./docker/phpfpm
     restart: always
+    environment:
+      TZ: Asia/Tokyo
     volumes:
       - ./log/fpm:/log/fpm
       - ./app:/var/www/html
@@ -25,6 +31,8 @@ services:
       - mysql
   composer:
     build: ./docker/composer
+    environment:
+      TZ: Asia/Tokyo
     volumes:
       - ./app:/app
 volumes:
