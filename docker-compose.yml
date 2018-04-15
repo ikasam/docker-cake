@@ -9,6 +9,8 @@ services:
       TZ: Asia/Tokyo
     volumes:
       - ./log/nginx:/var/log/nginx
+    volumes_from:
+      - app:rw
   mysql:
     build: ./docker/mysql
     restart: always
@@ -24,10 +26,10 @@ services:
     environment:
       TZ: Asia/Tokyo
     volumes:
+      - /var/run/php-fpm
       - ./log/fpm:/log/fpm
       - ./app:/var/www/html
     depends_on:
-      - nginx
       - mysql
   composer:
     build: ./docker/composer
